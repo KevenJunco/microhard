@@ -3,12 +3,13 @@ import mongoose from 'mongoose';
 // Models import
 import User from '../app/models/User';
 import File from '../app/models/File';
+import Product from '../app/models/Product';
 import Appointment from '../app/models/Appointment';
 
 import databaseConfig from '../config/database';
 
 // models list to insert in database
-const models = [User, File, Appointment];
+const models = [User, File, Appointment, Product];
 
 class Database {
   constructor() {

@@ -24,11 +24,11 @@ routes.post('/users', UserController.store);
 routes.post('/sessions', SessionController.store);
 
 routes.use(authMiddleware);
-routes.put('/users', UserController.update);
+routes.put('/users/:id', UserController.update);
 
 routes.post('/products', ProductController.store);
-// routes.get('/produts', ProductController.index);
-// routes.put('/products/:id', ProductController.update);
+routes.get('/products', ProductController.index);
+routes.put('/products/:id', ProductController.update);
 
 routes.get('/providers', ProviderController.index);
 routes.get('/providers/:providerId/available', AvailableController.index);

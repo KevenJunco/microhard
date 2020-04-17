@@ -19,5 +19,9 @@ class Product extends Model {
 
     return this;
   }
+
+  static associate(models) {
+    this.belongsTo(models.File, { foreignKey: 'img_id', as: 'img' });
+  }
 }
 export default Product;

@@ -17,6 +17,12 @@ class ProductController {
       return res.status(400).json({ error: 'Validadtion Fails' });
     }
 
+    const productExists = await Product.findOne({ where: { pn: req.body.pn } });
+
+    if (productExists) {
+      return res.status(400).json({ error: 'Product already exists' });
+    }
+
     const {
       id,
       pn,
@@ -37,6 +43,35 @@ class ProductController {
       tipo,
       valor_unitario,
       periodo,
+    });
+  }
+
+  async index(req, res) {
+    const products = await Product.findAll();
+
+    return res.json(products);
+  }
+
+  async update(req, res) {
+    const schema = Yup.object().shape({
+      name: Yup.string(),
+      descricao: Yup.string().required(),
+    });
+
+    if (!(await schema.isValid(req.body))) {
+      return res.status(400).json({ error: 'Validadtion Fails' });
+    }
+
+    const product = await Product.findByPk(req.productId);
+
+    const { id, name, descricao } = await product.update(req.body);
+
+    console.log(req.productId);
+
+    return res.json({
+      id,
+      name,
+      descricao,
     });
   }
 }
