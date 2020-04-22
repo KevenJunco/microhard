@@ -23,7 +23,7 @@ const upload = multer(multerConfig);
 routes.post('/users', UserController.store);
 routes.post('/sessions', SessionController.store);
 
-routes.use(authMiddleware);
+// routes.use(authMiddleware);
 routes.put('/users/:id', UserController.update);
 
 routes.post('/products', ProductController.store);

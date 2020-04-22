@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
+import cors from 'cors';
 import path from 'path';
 import Youch from 'youch';
 import * as Sentry from '@sentry/node';
@@ -11,6 +12,7 @@ import './database';
 
 class App {
   constructor() {
+    this.cors = cors();
     this.server = express();
     if (process.env.NODE_ENV !== 'development') {
       this.initSentry();
